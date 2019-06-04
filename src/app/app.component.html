@@ -1,0 +1,41 @@
+    <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">
+                      Porfolio
+                    </a>
+                  
+                    <button class="navbar-toggler" (click)="toggleNavbar()" type="button" >
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                  
+                  
+                    <div class="collapse navbar-collapse justify-content-end" [ngClass]="{ 'show': navbarOpen } ">
+                            <a class="nav-item nav-link" routerLink = 'about' routerLinkActive = 'active'>About Me</a>
+                            <a class="nav-item nav-link" routerLink = 'experience' routerLinkActive = 'active'>Experience</a>
+                            <a class="nav-item nav-link" routerLink = 'education' routerLinkActive = 'active'>Education</a>
+                            <a class="nav-item nav-link" routerLink = 'awards' routerLinkActive = 'active'>Awards</a>
+                            <a class="nav-item nav-link" routerLink = 'skills' routerLinkActive = 'active'>Skills</a>
+                            <a class="nav-item nav-link" routerLink = 'contact-me' routerLinkActive = 'active'>Contact Me</a>
+                    </div>
+                  </nav>
+            </header>
+            
+
+<main class="page">
+  <div class="jumbotron vertical-center">
+      <div class="container">
+          <h1 class="display-4">{{title}}</h1>
+      </div>
+  </div>
+ 
+        
+            <router-outlet (activate)='onActivate($event)'></router-outlet>
+
+</main>
+
+
+<footer>
+  <div class="container">
+      <p class="mb-0">&copy; 2018. All rights reserved.</p>
+  </div>
+</footer>

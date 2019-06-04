@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0"><i class="far fa-envelope"></i> Contact Me</h5>
+        </div>
+        <div class="card-body">
+            <form [formGroup] = 'contactMe' (ngSubmit)='onSubmit()'>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label required">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" value="" formControlName='name'>
+                        <p class = 'text-danger' *ngIf="validator('name','required')"> Name is Required</p>
+                        <p class = 'text-danger' *ngIf="validator('name','minlength')"> Name should by min 5 characteres</p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label required">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" value="" formControlName='email'>
+                        <p class = 'text-danger' *ngIf="validator('email','required')"> Email is Required</p>
+                        <p class = 'text-danger' *ngIf="validator('email','email')"> Invalid Email</p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label required">Mobile No</label>
+                    <div class="col-sm-10">
+                        <input type="tel" class="form-control" value="" formControlName='mobile'>
+                        <p class = 'text-danger' *ngIf="validator('mobile','required')"> Mobile No is Required</p>
+                        <p class = 'text-danger' *ngIf="validator('mobile','pattern')"> Invalid Mobile</p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label required">Message</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="6" formControlName='message'></textarea>
+                        <p class = 'text-danger' *ngIf="validator('message','required')"> Message is Required</p>
+                        <p class = 'text-danger' *ngIf="validator('message','minlength')"> Message should by min 15 characteres</p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10 ml-auto">
+                        <button type="submit" [ngClass]="{'btn':true,'btn-primary':true}" [disabled]='clicked'>
+                            <i class="far fa-paper-plane" ></i> 
+                            <span *ngIf='clicked' class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                            {{buttonText}}
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div *ngIf='successAlert' [@EnterLeave]="'flyIn'" [ngClass]="{'alert': true, 'container': true,  'alert-success': success, 'alert-danger' : !success}"
+                        role="alert">{{message}}
+       <button  [ngClass] = "{'button':true,'btn' :true,'btn-sm':true,'btn-success':success,'btn-danger':!success}"class='button btn btn-success btn-sm' 
+      (click)='toggleSuccess($event)'>OK</button>
+      <button *ngIf='!success' class='button btn btn-sm btn-danger ml-2' (click)='showMessage()'>{{showOrHide}} Details</button>
+      <p class='mt-2 mb-2'*ngIf='toggleError'>{{errMsg}}</p>
+            </div>
+            
+        </div>
+    </div>
+</div>
